@@ -23,7 +23,10 @@ public class ProductRepositoryImpl extends BaseRepository<Product> implements Pr
         /**
          * TODO: EXERCISE 1.a) Retrieve the different categories of available products.
          */
-        String sql = """
+        
+        String sql = """ 
+                SELECT DISTINCT CATEGORY
+                FROM PRODUCTS
                 """;
 
         return this.queryForList(sql, Map.of());
@@ -54,7 +57,12 @@ public class ProductRepositoryImpl extends BaseRepository<Product> implements Pr
          */
         Map<String, Object> params = new HashMap<>();
 
+
+
         String sql = """
+                SELECT NAME 
+                FROM PRODUCTS
+                WHERE UPPER(categories) = UPPER(CATEGORY)
                 """;
 
         return this.query(sql, params, Product.class);

@@ -26,6 +26,12 @@ public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderR
          * TODO: EXERCISE 2.a) Retrieve a list of the last N orders (remember to sort by
          * date)
          */
+        String sql = """
+                SELECT TOP limit ID
+                FROM ORDERS
+                ORDER BY DATE DESC
+                """;
+
         return List.of();
     }
 
@@ -55,6 +61,21 @@ public class OrderRepositoryImpl extends BaseRepository<Order> implements OrderR
          * you can use the exception {@link
          * com.inditex.zboost.exception.NotFoundException}
          */
+        
+        String sqlQuantity = """
+                SELECT QUANTITY
+                FROM ORDER_ITEMS
+                WHERE ID = orderId
+                """;
+        String sqlTotalPrice = """
+                SELECT PRICE
+                FROM PRODUCTS
+                WHERE ID=orderId
+                """;
+        //String quantity = sqlQuantity.parseInt();        
+        //String totalPrice = sqlTotalPrice.parseInt()*sqlQuantity.parseInt();
+        
+
         return new OrderDetail();
     }
 }
